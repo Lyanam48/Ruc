@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sistema de Citas CEPANIM</title>
+  <link rel="stylesheet" href="../css/main.css" />
+  <link rel="stylesheet" href="../css/citas.css" />
+  <style>
+    /* Toast notification */
+    .toast {
+      position: fixed;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      background: #2d3748;
+      color: #fff;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+      transition: transform 0.3s;
+      z-index: 999;
+      white-space: nowrap;
+    }
+    .toast.show { transform: translateX(-50%) translateY(0); }
+    .toast.toast-success { background: #1e7e34; }
+    .toast.toast-error   { background: #842029; }
+    .toast.toast-warn    { background: #856404; }
+    .toast.toast-info    { background: var(--blue-primary); }
+
+    .btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none !important; }
+  </style>
+</head>
+<body class="citas">
+
+  <!-- Dark navy header -->
+  <header class="citas-header">
+    <p class="sistema-label">Sistema de</p>
+    <h1 class="citas-title">CITAS <span>CEPANIM</span></h1>
+    <div class="header-divider"></div>
+    <div class="gov-banner">
+      <span class="gov-text">Gobierno</span>
+      <span class="flag-icon">&#127477;&#127462;</span>
+      <span class="gov-text">Nacional</span>
+    </div>
+    <div class="paso-firme">
+      <span class="star">&#9733;</span>
+      CON PASO FIRME
+      <span class="star">&#9733;</span>
+    </div>
+    <p class="mef-label">Ministerio de Economía y Finanzas</p>
+  </header>
+
+  <!-- Main content -->
+  <main class="citas-container">
+
+    <!-- Search panel -->
+    <div class="search-panel">
+      <span class="search-label">Buscar Beneficiario:</span>
+      <input
+        class="search-input"
+        id="searchInput"
+        type="text"
+        placeholder="Cédula o Seguro Social — Enter para buscar"
+        autocomplete="off"
+      />
+      <button class="btn btn-primary" id="btnConsultar">&#128269; Consultar</button>
+      <p class="search-hint">&#9432; Ingrese su <strong>cédula</strong> o <strong>seguro social</strong> para ver la fecha, hora, lugar y mesa de su cita.</p>
+    </div>
+
+    <!-- Empty state (shown by default) -->
+    <div id="emptyState" class="info-panel">
+      <div class="empty-state">
+        <div class="empty-icon">&#128203;</div>
+        <p>Realice una búsqueda para ver la información de su cita.</p>
+      </div>
+    </div>
+
+    <!-- Info panel (hidden until search) -->
+    <div id="infoPanel" style="display:none;">
+      <div class="info-panel">
+        <div class="info-panel-header">
+          <span class="icon">&#128100;</span>
+          Información del Beneficiario
+        </div>
+        <div class="info-grid">
+          <div class="info-field">
+            <span class="info-field-label">Cédula</span>
+            <span class="info-field-value" id="valCedula">—</span>
+          </div>
+          <div class="info-field">
+            <span class="info-field-label">Nombre</span>
+            <span class="info-field-value" id="valNombre">—</span>
+          </div>
+          <div class="info-field">
+            <span class="info-field-label">Fecha de Cita</span>
+            <span class="info-field-value" id="valFecha">—</span>
+          </div>
+          <div class="info-field">
+            <span class="info-field-label">Hora de Cita</span>
+            <span class="info-field-value" id="valHora">—</span>
+          </div>
+          <div class="info-field full-width">
+            <span class="info-field-label">Teléfono</span>
+            <span class="info-field-value" id="valTelefono">—</span>
+          </div>
+          <div class="info-field full-width">
+            <span class="info-field-label">Lugar de Atención</span>
+            <span class="info-field-value" id="valLugar">—</span>
+          </div>
+          <div class="info-field">
+            <span class="info-field-label">Estado de la Cita</span>
+            <span class="estado-badge estado-confirmada" id="valEstado">—</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action buttons -->
+      <div class="action-buttons">
+        <button class="btn btn-primary" id="btnReprogramar">&#128197; Reprogramar Cita</button>
+        <button class="btn btn-danger" id="btnCancelar">&#10006; Cancelar Cita</button>
+        <button class="btn btn-secondary" id="btnNueva">&#43; Nueva Cita</button>
+        <button class="btn btn-success" id="btnConfirmar">&#10003; Confirmar Cita</button>
+      </div>
+
+      <!-- Navigation -->
+      <div class="nav-buttons">
+        <button class="btn btn-secondary" id="btnAnterior" disabled>&#8592; Anterior</button>
+        <span id="pageInfo" style="align-self:center; font-size:0.85rem; color:var(--text-muted);"></span>
+        <button class="btn btn-secondary" id="btnSiguiente">Siguiente &#8594;</button>
+      </div>
+    </div>
+
+    <p class="citas-note">
+      Nota: Solo para uso interno del personal del MEF. &nbsp;
+      <span style="cursor:pointer; color:var(--blue-primary);" id="btnBack">&#8592; Salir</span>
+    </p>
+  </main>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+  <script src="../js/main.js"></script>
+  <script src="../js/citas.js"></script>
+</body>
+</html>
