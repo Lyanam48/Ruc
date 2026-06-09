@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Registro de Empresas - CEPANIM</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/registro.css') }}" />
+</head>
+<body class="registro">
+  <div class="registro-card">
+    <div class="registro-top-bar"></div>
+    <div class="registro-body">
+      <h2 class="registro-title">Registro de Empresas</h2>
+      <p class="registro-subtitle">Ministerio de Economía y Finanzas</p>
+      <div class="form-divider"></div>
+
+      {% if error %}
+        <p class="status-msg error">{{ error }}</p>
+      {% endif %}
+
+      <form method="POST" action="{{ url_for('registro') }}" novalidate>
+
+        <div class="form-group">
+          <label class="form-label" for="empresa">Nombre de la Empresa</label>
+          <input class="form-input" id="empresa" name="empresa" type="text"
+                 placeholder="Nombre completo de la empresa" required />
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="ruc">RUC / NIT (DGI)</label>
+            <input class="form-input" id="ruc" name="ruc" type="text"
+                   placeholder="Ej: 8-123-456" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="razonSocial">Razón Social</label>
+            <input class="form-input" id="razonSocial" name="razonSocial" type="text"
+                   placeholder="Razón social" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="direccion">Dirección Fiscal</label>
+          <input class="form-input" id="direccion" name="direccion" type="text"
+                 placeholder="Dirección fiscal registrada" required />
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="telefono">Teléfono</label>
+            <input class="form-input" id="telefono" name="telefono" type="tel"
+                   placeholder="Ej: 223-4567" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="email">Correo Electrónico</label>
+            <input class="form-input" id="email" name="email" type="email"
+                   placeholder="correo@empresa.com" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="fechaConst">Fecha de Constitución</label>
+          <input class="form-input" id="fechaConst" name="fechaConst" type="date" required />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="repLegal">Representante Legal</label>
+          <input class="form-input" id="repLegal" name="repLegal" type="text"
+                 placeholder="Nombre completo del representante" required />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="numResolucion">Número de Resolución DGI</label>
+          <input class="form-input" id="numResolucion" name="numResolucion" type="text"
+                 placeholder="Número de resolución" required />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="tipoServicio">Tipo de Servicio que Brinda</label>
+          <select class="form-select" id="tipoServicio" name="tipoServicio" required>
+            <option value="">Seleccione...</option>
+            <option value="comercial">Comercial</option>
+            <option value="industrial">Industrial</option>
+            <option value="servicios">Servicios Profesionales</option>
+            <option value="tecnologia">Tecnología</option>
+            <option value="construccion">Construcción</option>
+            <option value="salud">Salud</option>
+            <option value="educacion">Educación</option>
+            <option value="otro">Otro</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="descServicio">Descripción del Servicio</label>
+          <textarea class="form-textarea" id="descServicio" name="descServicio"
+                    placeholder="Escriba una breve descripción..."></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary registro-submit">Registrar Empresa</button>
+      </form>
+
+      <a class="registro-back" href="{{ url_for('login') }}">&#8592; Volver al login</a>
+    </div>
+  </div>
+</body>
+</html>

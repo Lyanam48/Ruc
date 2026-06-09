@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sistema de Citas CEPANIM</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/citas.css') }}" />
+  <style>
+    .toast {
+      position: fixed; bottom: 28px; left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      background: #2d3748; color: #fff;
+      padding: 12px 24px; border-radius: 8px;
+      font-size: .88rem; font-weight: 600;
+      box-shadow: 0 4px 20px rgba(0,0,0,.25);
+      transition: transform .3s; z-index: 999; white-space: nowrap;
+    }
+    .toast.show   { transform: translateX(-50%) translateY(0); }
+    .toast.success { background: #1e7e34; }
+    .toast.error   { background: #842029; }
+    .toast.warn    { background: #856404; }
+    .toast.info    { background: var(--blue-primary); }
+    .btn:disabled  { opacity: .4; cursor: not-allowed; transform: none !important; }
+    .status-msg { display:none; padding:10px 14px; border-radius:6px; font-size:.85rem; margin-top:10px; }
+    .status-msg.error   { background:#fde8e8; color:#842029; border:1px solid #f5c6cb; display:block; }
+    .status-msg.success { background:#e8f8ee; color:#1e7e34; border:1px solid #a3d9b1; display:block; }
+  </style>
+</head>
+<body class="citas">
+
+  <header class="citas-header">
+    <p class="sistema-label">Sistema de</p>
+    <h1 class="citas-title">CITAS <span>CEPANIM</span></h1>
+    <div class="header-divider"></div>
+    <div class="gov-banner">
+      <span class="gov-text">Gobierno</span>
+      <span class="flag-icon">&#127477;&#127462;</span>
+      <span class="gov-text">Nacional</span>
+    </div>
+    <div class="paso-firme">
+      <span class="star">&#9733;</span> CON PASO FIRME <span class="star">&#9733;</span>
+    </div>
+    <p class="mef-label">Ministerio de Economía y Finanzas</p>
+  </header>
+
+  <main class="citas-container">
+
+    <div class="search-panel">
+      <span class="search-label">Buscar Beneficiario:</span>
+      <input class="search-input" id="searchInput" type="text"
+             placeholder="Cédula o Seguro Social — Enter para buscar" autocomplete="off" />
+      <button class="btn btn-primary" id="btnConsultar">&#128269; Consultar</button>
+      <p class="search-hint">
+        &#9432; Ingrese su <strong>cédula</strong> o <strong>seguro social</strong>
+        para ver la fecha, hora, lugar y mesa de su cita.
+      </p>
+    </div>
+
+    <div id="emptyState" class="info-panel">
+      <div class="empty-state">
+        <div class="empty-icon">&#128203;</div>
+        <p>Realice una búsqueda para ver la información de su cita.</p>
+      </div>
+    </div>
+
+    <div id="infoPanel" style="display:none;">
+      <div class="info-panel">
+        <div class="info-panel-header">
+          <span class="icon">&#128100;</span> Información del Beneficiario
+        </div>
+        <div class="info-grid">
+          <div class="info-field">
+            <span class="info-field-label">Cédula</span>
+            <span class="info-field-value" id="valCedula">—</span>
+          </div>
+          <div class="info-field">
+            <span class="info-field-label">Nombre</span>
+            <span class="info-field-value" id="valNombre">—</span>
+          </div>
+          <div class="info-field">
+            <span class="info-field-label">Fecha de Cita</span>
+            <span class="info-field-value" id="valFecha">—</span>
+          </div>
+          <div class="info-field">
+            <span class="info-field-label">Hora de Cita</span>
+            <span class="info-field-value" id="valHora">—</span>
+          </div>
+          <div class="info-field full-width">
+            <span class="info-field-label">Teléfono</span>
+            <span class="info-field-value" id="valTelefono">—</span>
+          </div>
+          <div class="info-field full-width">
+            <span class="info-field-label">Lugar de Atención</span>
+            <span class="info-field-value" id="valLugar">—</span>
+          </div>
+          <div class="info-field">
+            <span class="info-field-label">Estado de la Cita</span>
+            <span class="estado-badge" id="valEstado">—</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="action-buttons">
+        <button class="btn btn-primary"   id="btnReprogramar">&#128197; Reprogramar Cita</button>
+        <button class="btn btn-danger"    id="btnCancelar">&#10006; Cancelar Cita</button>
+        <button class="btn btn-secondary" id="btnNueva">&#43; Nueva Cita</button>
+        <button class="btn btn-success"   id="btnConfirmar">&#10003; Confirmar Cita</button>
+      </div>
+
+      <div class="nav-buttons">
+        <button class="btn btn-secondary" id="btnAnterior" disabled>&#8592; Anterior</button>
+        <span id="pageInfo" style="align-self:center; font-size:.85rem; color:var(--text-muted);"></span>
+        <button class="btn btn-secondary" id="btnSiguiente">Siguiente &#8594;</button>
+      </div>
+    </div>
+
+    <p class="citas-note">
+      Nota: Solo para uso interno del personal del MEF. &nbsp;
+      <a href="{{ url_for('index') }}" style="color:var(--blue-primary);">&#8592; Salir</a>
+    </p>
+  </main>
+
+  <div class="toast" id="toast"></div>
+
+  <!-- Inject Flask route URLs so citas.js can use them without Jinja -->
+  <script>
+    const API = {
+      buscar:  "{{ url_for('api_buscar') }}",
+      estado:  "/api/citas/",   // + id + /estado
+      registro: "{{ url_for('registro') }}"
+    };
+  </script>
+  <script src="{{ url_for('static', filename='js/citas.js') }}"></script>
+</body>
+</html>

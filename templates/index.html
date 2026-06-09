@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Plataforma de Acceso CEPANIM - CEPADEM</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/landing.css') }}" />
+</head>
+<body class="landing">
+  <div class="landing-container">
+    <div class="badge-platform">Plataforma de Acceso CEPANIM - CEPADEM</div>
+
+    <h1 class="landing-heading">
+      Bienvenido a la plataforma de acceso para solicitudes y<br>
+      trámites de CEPANIM o CEPADEM.
+    </h1>
+    <p class="landing-subheading">Seleccione la opción correspondiente al trámite que desea realizar.</p>
+
+    <div class="panels-row">
+      <div class="panel-card cepanim">
+        <div class="panel-icon">&#128196;</div>
+        <div class="panel-title">CEPANIM</div>
+        <p class="panel-desc">Registro, consulta y seguimiento de solicitudes CEPANIM.</p>
+        <a href="{{ url_for('login') }}" class="panel-btn">Ingresar</a>
+      </div>
+
+      <div class="panel-card cepadem">
+        <div class="panel-icon">&#128196;</div>
+        <div class="panel-title">CEPADEM</div>
+        <p class="panel-desc">Registro, consulta y seguimiento de solicitudes CEPADEM.</p>
+        <button class="panel-btn" onclick="alert('El módulo CEPADEM estará disponible próximamente.')">Ingresar</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

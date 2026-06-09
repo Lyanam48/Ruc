@@ -1,0 +1,94 @@
+/* Shared styles across all pages */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --navy: #0d1b2e;
+  --navy-dark: #0a1320;
+  --blue-primary: #1a5fa8;
+  --blue-secondary: #2980d9;
+  --red-flag: #d52b1e;
+  --gold: #e8a000;
+  --gold-light: #f5b800;
+  --green-panel: #27ae60;
+  --white: #ffffff;
+  --light-grey: #f4f6f9;
+  --border-grey: #dce1ea;
+  --text-dark: #1a2840;
+  --text-muted: #6c7a8d;
+  --shadow: 0 4px 20px rgba(0,0,0,0.12);
+  --radius: 8px;
+}
+
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: var(--light-grey);
+  color: var(--text-dark);
+  line-height: 1.5;
+}
+
+a {
+  color: var(--blue-primary);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 22px;
+  border: none;
+  border-radius: var(--radius);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: filter 0.15s, transform 0.1s;
+}
+
+.btn:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+
+.btn:active {
+  transform: translateY(0);
+  filter: brightness(0.95);
+}
+
+.btn-primary {
+  background: var(--blue-primary);
+  color: var(--white);
+}
+
+.btn-secondary {
+  background: #6c7a8d;
+  color: var(--white);
+}
+
+.btn-success {
+  background: var(--green-panel);
+  color: var(--white);
+}
+
+.btn-danger {
+  background: var(--red-flag);
+  color: var(--white);
+}
+
+.btn-gold {
+  background: var(--gold);
+  color: var(--navy-dark);
+}
+
+.btn-outline {
+  background: transparent;
+  border: 2px solid var(--white);
+  color: var(--white);
+}
