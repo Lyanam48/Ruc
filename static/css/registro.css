@@ -1,0 +1,140 @@
+/* Registro de Empresas page */
+body.registro {
+  background: #eef1f7;
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 30px 16px 50px;
+}
+
+.registro-card {
+  background: var(--white);
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+  width: 100%;
+  max-width: 520px;
+  overflow: hidden;
+}
+
+.registro-top-bar {
+  height: 6px;
+  background: linear-gradient(to right, var(--red-flag) 50%, var(--blue-primary) 50%);
+}
+
+.registro-body {
+  padding: 32px 36px 40px;
+}
+
+.registro-title {
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: var(--navy);
+  text-align: center;
+  margin-bottom: 4px;
+}
+
+.registro-subtitle {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.form-divider {
+  height: 1px;
+  background: var(--border-grey);
+  margin-bottom: 24px;
+}
+
+.form-row {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin-bottom: 16px;
+}
+
+.form-row .form-group {
+  margin-bottom: 0;
+}
+
+.form-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 5px;
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+  width: 100%;
+  padding: 9px 12px;
+  border: 1.5px solid var(--border-grey);
+  border-radius: 5px;
+  font-size: 0.88rem;
+  color: var(--text-dark);
+  background: var(--white);
+  transition: border-color 0.2s;
+  font-family: inherit;
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: var(--blue-primary);
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+  color: #b0bac9;
+  font-style: italic;
+}
+
+.form-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%236c7a8d' d='M0 0l6 8 6-8z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 32px;
+  cursor: pointer;
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.registro-submit {
+  margin-top: 8px;
+  width: 100%;
+  justify-content: center;
+  padding: 13px;
+  font-size: 0.95rem;
+  border-radius: 6px;
+}
+
+.registro-back {
+  display: block;
+  text-align: center;
+  margin-top: 16px;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.registro-back:hover {
+  color: var(--blue-primary);
+}
+
+/* date input icon fix */
+.form-input[type="date"] {
+  cursor: pointer;
+}
