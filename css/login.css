@@ -1,0 +1,110 @@
+/* CEPANIM Login page */
+body.login {
+  background: #eef1f7;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 16px;
+}
+
+.login-card {
+  background: var(--white);
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+  width: 100%;
+  max-width: 380px;
+  overflow: hidden;
+}
+
+.login-top-bar {
+  height: 6px;
+  background: linear-gradient(to right, var(--red-flag) 50%, var(--blue-primary) 50%);
+}
+
+.login-body {
+  padding: 38px 36px 40px;
+  text-align: center;
+}
+
+.login-logo {
+  font-size: 2.4rem;
+  font-weight: 900;
+  color: var(--navy);
+  letter-spacing: 2px;
+  margin-bottom: 4px;
+}
+
+.login-logo-line {
+  height: 3px;
+  background: linear-gradient(to right, var(--red-flag), var(--blue-primary));
+  border-radius: 2px;
+  margin-bottom: 16px;
+}
+
+.login-subtitle {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 4px;
+}
+
+.login-desc {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-bottom: 28px;
+}
+
+.login-label {
+  display: block;
+  text-align: left;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 8px;
+}
+
+.login-input {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1.5px solid var(--border-grey);
+  border-radius: 6px;
+  font-size: 0.9rem;
+  color: var(--text-dark);
+  background: var(--white);
+  transition: border-color 0.2s;
+  margin-bottom: 24px;
+}
+
+.login-input:focus {
+  outline: none;
+  border-color: var(--blue-primary);
+}
+
+.login-input::placeholder {
+  color: #b0bac9;
+}
+
+.login-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.login-actions .btn {
+  flex: 1;
+  justify-content: center;
+  padding: 11px 10px;
+  font-size: 0.88rem;
+}
+
+.login-back {
+  display: block;
+  margin-top: 20px;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.login-back:hover {
+  color: var(--blue-primary);
+}

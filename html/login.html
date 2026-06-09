@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CEPANIM - Plataforma de Registro Empresarial</title>
+  <link rel="stylesheet" href="../css/main.css" />
+  <link rel="stylesheet" href="../css/login.css" />
+</head>
+<body class="login">
+  <div class="login-card">
+    <div class="login-top-bar"></div>
+    <div class="login-body">
+      <div class="login-logo">CEPANIM</div>
+      <div class="login-logo-line"></div>
+      <p class="login-subtitle">Plataforma de Registro Empresarial</p>
+      <p class="login-desc">Accede o regístrate para brindar tus servicios</p>
+
+      <label class="login-label" for="inputRuc">Ingrese su RUC o NIT</label>
+      <input
+        class="login-input"
+        id="inputRuc"
+        type="text"
+        placeholder="Ejemplo: 123456-1-789012"
+        autocomplete="off"
+      />
+
+      <p id="errorMsg" style="display:none; color:#d52b1e; font-size:0.82rem; margin-bottom:12px; text-align:left;"></p>
+
+      <div class="login-actions">
+        <button class="btn btn-primary" id="btnRegistrar">&#127970; Registrarse</button>
+        <button class="btn btn-primary" id="btnIniciar">&#128274; Iniciar Sesión</button>
+      </div>
+
+      <span class="login-back" id="btnBack">&#8592; Volver al inicio</span>
+    </div>
+  </div>
+
+  <script src="../js/main.js"></script>
+  <script src="../js/login.js"></script>
+</body>
+</html>
